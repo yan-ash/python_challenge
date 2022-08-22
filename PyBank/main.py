@@ -10,7 +10,7 @@ os.chdir(os.path.dirname(__file__))
 # Path to collect data from the Resources folder
 csvpath = os.path.join('Resources', 'budget_data.csv')
 outpath = os.path.join('Analysis', 'budget.txt')
-#define changes and have it accept the 
+#define total month, profit start with "0", net change list is a list gathers all the monthly changes 
 total_month=0
 total_profits=0
 month_of_change=[]
@@ -19,9 +19,12 @@ greatest_increase=["",0]
 greatest_decrease=["",0]
 total_net_change=0
 
+#open file and read file 
 with open (csvpath) as csvfile:
         csvreader=csv.reader(csvfile, delimiter=',')
+        #first row is the header
         header= next(csvreader)
+        #next row is the first month profit also should be the totalprofits is the same as the first month profit
         firstprofit=next(csvreader)
         total_profits+=int(firstprofit[1])
         previous_profit=int(firstprofit[1])
