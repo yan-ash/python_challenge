@@ -12,6 +12,7 @@ outputpath=os.path.join('Analysis', 'election_data.txt')
 
 #initialize a total vote counter.
 total_votes=0
+winning_counts=0
 #define candidate_list(name) and canidates_vote
 candidate_list=[]
 candidates_vote={}
@@ -42,7 +43,11 @@ for candidate in candidates_vote:
         vote=(candidates_vote).get(candidate)
         candidate_percentage= float(vote)/float(total_votes) *100
         candidate_result=(f"{candidate}:{candidate_percentage:.3f}%\n")
-        print(candidate_result)
+        if vote> winning_counts:
+            print("Winning Canidate:" candidate)
+
+print(candidate_result)
+
 with open(outputpath, 'w') as csvtxt:
             Election_results= print("Election Results")
             total_votes=print(f'Total Votes: {total_votes}')
