@@ -33,23 +33,24 @@ with open (csvpath) as csvfile:
                 
                 candidates_vote[candidate]=0
 
-                candidates_vote[candidate] += 1
+            candidates_vote[candidate] += 1
 print(total_votes)                    
 print(candidate_list) 
 print(candidates_vote) 
  
-with open(outputpath, 'w') as csvtxt:
-            Election_results= print("Election Results")
-            total_votes=print(f'Total Votes: {total_votes}')
+
+          
 for candidate in candidates_vote:
         vote=(candidates_vote).get(candidate)
         candidate_percentage= float(vote)/float(total_votes) *100
         candidate_result=(f"{candidate}:{candidate_percentage:.3f}%\n")
-        if vote> winning_counts:
+        print(candidate_result)
 
-            print(f"Winning Candidate:{candidate}")
+if vote> winning_counts:
 
-print(candidate_result)
+    print(f"Winning Candidate:{candidate}")
+
+    
 
 
 

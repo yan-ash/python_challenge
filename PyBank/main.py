@@ -1,14 +1,15 @@
+from fileinput import filename
 import os
 import csv
 
 
 os.chdir(os.path.dirname(__file__))
-# Optional: print the current working directory
-print("This program is running from: " + os.getcwd())
+
 #-----------------------------------------------------
 
 # Path to collect data from the Resources folder
 csvpath = os.path.join('Resources', 'budget_data.csv')
+outpath = os.path.join('Analysis', 'budget.txt')
 #define changes and have it accept the 
 total_month=0
 total_profits=0
@@ -22,8 +23,9 @@ with open (csvpath) as csvfile:
         csvreader=csv.reader(csvfile, delimiter=',')
         header= next(csvreader)
         firstprofit=next(csvreader)
+        total_profits+=int(firstprofit[1])
         previous_profit=int(firstprofit[1])
-        total_month>=0
+        total_month+=1
     
         for row in csvreader:
                 total_month=total_month+1
@@ -33,23 +35,26 @@ with open (csvpath) as csvfile:
                 profit_change=int(row[1])-previous_profit
                 previous_profit= int(row[1])
                 net_change_list += [profit_change]
-                total_net_change=sum(net_change_list)  
-                average_change= total_net_change/len(net_change_list)
+                
         
                 if profit_change> greatest_increase[1]:
                         greatest_increase[0]=row[0]
                         greatest_increase[1]=profit_change
                 if profit_change<greatest_decrease[1]:
                         greatest_decrease[0]=row[0]
-                        greatest_increase[1]=profit_change
+                        greatest_decrease[1]=profit_change
 
+total_net_change=sum(net_change_list)  
+average_change= total_net_change/len(net_change_list)
 print(f"Total Month:{total_month}")
-print(f"Total Profits: {total_profits}")
-
-
+print(f"Total Profits:${total_profits}\n")
 print(f"Average Change:${average_change:.2f}\n")
 print(f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n")
 print(f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n")
+
+
+
+               
 
 
 
