@@ -1,3 +1,4 @@
+from datetime import date
 from fileinput import filename
 import os
 import csv
@@ -10,6 +11,7 @@ os.chdir(os.path.dirname(__file__))
 # Path to collect data from the Resources folder
 csvpath = os.path.join('Resources', 'budget_data.csv')
 outpath = os.path.join('Analysis', 'budget.txt')
+
 #define total month, profit start with "0", net change list is a list gathers all the monthly changes 
 total_month=0
 total_profits=0
@@ -54,6 +56,24 @@ print(f"Total Profits:${total_profits}\n")
 print(f"Average Change:${average_change:.2f}\n")
 print(f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n")
 print(f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n")
+
+
+
+output_text=(f"Financial Analysis\n"
+f"---------------------------\n"
+        
+        f"Total Month:{total_month}\n\n"
+f"Total Profits:${total_profits}\n\n"
+f"Average Change:${average_change:.2f}\n\n"
+f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n\n"
+f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n")
+
+print(output_text)
+
+with open(outpath, "w") as file:
+        file.write(output_text)
+
+
 
 
 

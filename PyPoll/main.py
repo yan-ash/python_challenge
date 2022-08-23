@@ -1,3 +1,4 @@
+from fileinput import filename
 import os
 import csv
 
@@ -8,7 +9,7 @@ os.chdir(os.path.dirname(__file__))
 
 # Path to collect data from the Resources folder
 csvpath = os.path.join('Resources', 'election_data.csv')
-outputpath=os.path.join('Analysis', 'election_data.txt')
+outpath=os.path.join('Analysis', 'election_data.txt')
 
 #initialize a total vote counter.
 total_votes=0
@@ -50,7 +51,11 @@ if vote> winning_counts:
 
     print(f"Winning Candidate:{candidate}")
 
-    
+with open(outpath, "W") as txt_file:
+    filename=("Election Result")
+    election_result=(f"Total Votes:{total_votes}")  
+txt_file.write(filename)  
+txt_file.write(election_result)
 
 
 
