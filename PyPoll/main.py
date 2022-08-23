@@ -1,6 +1,8 @@
+from distutils.text_file import TextFile
 from fileinput import filename
 import os
 import csv
+from tkinter import N
 
 
 os.chdir(os.path.dirname(__file__))
@@ -14,22 +16,23 @@ outpath=os.path.join('Analysis', 'election_data.txt')
 #initialize a total vote counter.
 total_votes=0
 winning_counts=0
-#define candidate_list(name) and canidates_vote
+#define candidate_list for each candidate name and canidates_vote is a dictionary for all candidates and their votes
 candidate_list=[]
 candidates_vote={}
 
-
+#open the files and read it:
 with open (csvpath) as csvfile:
         csvreader=csv.reader(csvfile, delimiter=',')
         header= next(csvreader)
        
-        
+        #for each row in csvreader, total vote adds up with each row including the first row
         for row in csvreader:
             total_votes= total_votes+1
             candidate =str(row[2]) 
-            # if the candidate name is not in the candidate list, add candidate in the list
+            # if the candidate name is not in the candidate list, add candidate in the list, 
+            
             if candidate not in candidate_list:
-              
+             # candidate name adds up to the candidate list 
                 candidate_list. append(candidate)
                 
                 candidates_vote[candidate]=0
@@ -39,23 +42,38 @@ print(total_votes)
 print(candidate_list) 
 print(candidates_vote) 
  
-
-          
-for candidate in candidates_vote:
+with open(outpath, "w") as txt_file:
+    output_content=(f"Election Result\n\n"
+    f"-----------------------------------\n"
+    f"Total Votes:{total_votes}\n\n"
+     f"-----------------------------------\n")
+    txt_file.write(output_content)      
+    for candidate in candidates_vote:
         vote=(candidates_vote).get(candidate)
         candidate_percentage= float(vote)/float(total_votes) *100
-        candidate_result=(f"{candidate}:{candidate_percentage:.3f}%\n")
+        candidate_result=(f"{candidate}:{candidate_percentage:.3f}% ({vote})\n")
+        
         print(candidate_result)
+        txt_file.write(f"{candidate_result}\n")
+       
+    
+        if (vote> winning_counts):
+                winning_counts=vote
+                winning_candidate=candidate
+    
 
-if vote> winning_counts:
 
-    print(f"Winning Candidate:{candidate}")
+    print(f"Winning Candidate:{winning_candidate}")
+    winning=(f"-----------------------------------\n"
+        f"Winning Candidate:{winning_candidate}\n\n"
+     f"-----------------------------------\n")
+    txt_file.write(winning)
 
-with open(outpath, "W") as txt_file:
-    filename=("Election Result")
-    election_result=(f"Total Votes:{total_votes}")  
-txt_file.write(filename)  
-txt_file.write(election_result)
+
+
+    
+    
+    
 
 
 
