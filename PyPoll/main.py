@@ -1,8 +1,7 @@
-from distutils.text_file import TextFile
-from fileinput import filename
+
 import os
 import csv
-from tkinter import N
+
 
 
 os.chdir(os.path.dirname(__file__))
@@ -13,7 +12,7 @@ os.chdir(os.path.dirname(__file__))
 csvpath = os.path.join('Resources', 'election_data.csv')
 outpath=os.path.join('Analysis', 'election_data.txt')
 
-#initialize a total vote counter.
+#initialize a total vote counts, winning counts
 total_votes=0
 winning_counts=0
 #define candidate_list for each candidate name and canidates_vote is a dictionary for all candidates and their votes
@@ -29,7 +28,7 @@ with open (csvpath) as csvfile:
         for row in csvreader:
             total_votes= total_votes+1
             candidate =str(row[2]) 
-            # if the candidate name is not in the candidate list, add candidate in the list, 
+            # if the candidate's name is not in the candidate list, add candidate in the list, 
             
             if candidate not in candidate_list:
              # candidate name adds  to the candidate list 
@@ -54,7 +53,7 @@ with open(outpath, "w") as txt_file:
     txt_file.write(output_content)
 
 
-#Design a look to work out each candidat's vote number and their vote percentage and write out to the textfile
+#Design a loop to work out each candidate's vote number and their vote percentage and write out to the textfile
 
     for candidate in candidates_vote:
         vote=(candidates_vote).get(candidate)

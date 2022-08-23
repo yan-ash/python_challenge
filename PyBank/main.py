@@ -1,9 +1,8 @@
-from datetime import date
-from fileinput import filename
+
 import os
 import csv
 
-
+#setting working directory to where this Python file is 
 os.chdir(os.path.dirname(__file__))
 
 #-----------------------------------------------------
