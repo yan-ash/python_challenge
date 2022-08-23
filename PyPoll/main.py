@@ -38,7 +38,7 @@ with open (csvpath) as csvfile:
             # within each row loop, the candidate's votes add up
             candidates_vote[candidate] += 1
 print(total_votes)                    
-print(candidate_list) 
+
 print(candidates_vote) 
 
 #start writing the output file with our total votes that we calculated 
@@ -48,7 +48,7 @@ with open(outpath, "w") as txt_file:
 
     output_content=(f"Election Result\n\n"
     f"-----------------------------------\n"
-    f"Total Votes:{total_votes}\n\n"
+    f"Total Votes: {total_votes}\n\n"
      f"-----------------------------------\n")
     txt_file.write(output_content)
 
@@ -58,7 +58,7 @@ with open(outpath, "w") as txt_file:
     for candidate in candidates_vote:
         vote=(candidates_vote).get(candidate)
         candidate_percentage= float(vote)/float(total_votes) *100
-        candidate_result=(f"{candidate}:{candidate_percentage:.3f}% ({vote})\n")
+        candidate_result=(f"{candidate}: {candidate_percentage:.3f}% ({vote})\n")
         
         print(candidate_result)
         txt_file.write(f"{candidate_result}\n")
@@ -71,9 +71,9 @@ with open(outpath, "w") as txt_file:
     
 
 
-    print(f"Winning Candidate:{winning_candidate}")
+    print(f"Winner:{winning_candidate}")
     winning=(f"-----------------------------------\n"
-        f"Winning Candidate:{winning_candidate}\n\n"
+        f"Winner: {winning_candidate}\n\n"
      f"-----------------------------------\n")
     txt_file.write(winning)
 
