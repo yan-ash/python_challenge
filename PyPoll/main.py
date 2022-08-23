@@ -46,9 +46,9 @@ print(candidates_vote)
 
 with open(outpath, "w") as txt_file:
 
-    output_content=(f"Election Result\n\n"
+    output_content=(f"Election Result\n"
     f"-----------------------------------\n"
-    f"Total Votes: {total_votes}\n\n"
+    f"Total Votes: {total_votes}\n"
      f"-----------------------------------\n")
     txt_file.write(output_content)
 
@@ -58,7 +58,7 @@ with open(outpath, "w") as txt_file:
     for candidate in candidates_vote:
         vote=(candidates_vote).get(candidate)
         candidate_percentage= float(vote)/float(total_votes) *100
-        candidate_result=(f"{candidate}: {candidate_percentage:.3f}% ({vote})\n")
+        candidate_result=(f"{candidate}: {candidate_percentage:.3f}% ({vote})")
         
         print(candidate_result)
         txt_file.write(f"{candidate_result}\n")
@@ -73,7 +73,7 @@ with open(outpath, "w") as txt_file:
 
     print(f"Winner:{winning_candidate}")
     winning=(f"-----------------------------------\n"
-        f"Winner: {winning_candidate}\n\n"
+        f"Winner: {winning_candidate}\n"
      f"-----------------------------------\n")
     txt_file.write(winning)
 
