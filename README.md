@@ -9,14 +9,14 @@ Project 1 < Py Bank>
       # work out the profit change(monthly) and put the in a list(net_change)
       #use an if loop to find out the greatest increase and decrease
 # worked out the total month, total profits , 
-# avarage change= totalnetchang/ the length
+# avarage change= totalnetchange/ the length()
 
 # then write them into budget.txt
 
 
 Project 2 <Py Poll>
 
- # this project aims to find out the candidate list, and each candidates votes and their percentage, among them, the most votes is the winner
+ # this project aims to find out the candidate list, and each candidates votes and their percentage, whevere has the most amount of votes among them is the winner
 
 # setting working directory to where the file is 
 # set the variables and initialize the variable value
